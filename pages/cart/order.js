@@ -11,9 +11,9 @@ import airtel from '../../public/airtel.png'
 import Modal from '../../components/Modal'
 
 function Order({ router: { query } }) {
-    const data = JSON.parse(query.data);
+    // const data = JSON.parse(query.data);
 
-    const [ orderData, setOrderData ] = React.useState(data);
+    const [ orderData, setOrderData ] = React.useState([]);
 
     const [ name, SetName ] = React.useState("");
     const [ email, SetEmail ] = React.useState("");
@@ -26,17 +26,17 @@ function Order({ router: { query } }) {
 
 
     const findTheCartPrice = () => {
-        const prices = [];
-        orderData.forEach(item => {
-            prices.push(item.price);
-        })
-        if(prices){
-            const sum = prices.reduce((a, b) => a + b)
-            setCost(sum)
-        }else {
-            setCost(0);
-        }
-
+        // const prices = [];
+        // orderData.forEach(item => {
+        //     prices.push(item.price);
+        // })
+        // if(prices){
+        //     const sum = prices.reduce((a, b) => a + b)
+        //     setCost(sum)
+        // }else {
+        //     setCost(0);
+        // }
+        return 0
     }
 
     React.useEffect(() => {

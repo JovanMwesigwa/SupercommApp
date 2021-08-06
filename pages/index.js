@@ -6,10 +6,10 @@ import Link from 'next/link';
 
 import data from '../data/data'
 
-export default function Home() {
+const Home = ({products}) => {
   const [ cartCount, setCartCount ] = useState(0);
 
-  const [ cartItems, setCartItems ] = useState([]);
+  const [ cartItems, setCartItems ] = useState(products);
 
   const btnAction = (action, item) => {
     switch (action) {
@@ -44,7 +44,7 @@ export default function Home() {
         <div className="flex flex-row items-center justify-between px-5 py-3 md:p-3 md:px-10 md:w-full md:z-10 border-b bg-white md:fixed">
           <div className="flex flex-col pb-3">
             <h1 className="text-2xl font-medium text-gray-800">Market Place</h1>
-            <p className="text-sm text-gray-500">{data.length} products</p>
+            <p className="text-sm text-gray-500">{products.length} products</p>
           </div>
 
         {
@@ -66,7 +66,7 @@ export default function Home() {
 
       <div className="flex flex-row flex-wrap md:p-6 md:mt-20">
         {
-          data.map(item => (
+          products.map(item => (
             <ProductCard key={item.id} item={item} action={btnAction} />
           ))
         }
@@ -81,3 +81,13 @@ export default function Home() {
     </div>
   )
 }
+
+export const getStaticProps = context => {
+  return {
+    props: {
+      products: data,
+    }
+  }
+}
+
+export default Home;
